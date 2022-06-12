@@ -1,0 +1,9 @@
+{
+	"name": "AzDaFa",
+	"location": "centralindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "5dcec431-fb5c-42de-90fb-97eee12741a7",
+		"tenantId": "121a0339-790d-4a0d-bd93-8ac29d6a8e15"
+	}
+}
