@@ -1,0 +1,9 @@
+{
+	"name": "DFPipe",
+	"location": "centralindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "c80cc0c0-7df7-44ce-8682-0a9352bed470",
+		"tenantId": "121a0339-790d-4a0d-bd93-8ac29d6a8e15"
+	}
+}
