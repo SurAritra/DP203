@@ -1,0 +1,17 @@
+{
+	"name": "SQL script 1",
+	"properties": {
+		"content": {
+			"query": "select top 10 *\nfrom openrowset(\n    bulk 'https://storageaccxx.dfs.core.windows.net/synfilexx/blocks-0012738509-0012739509.parquet',\n    format = 'parquet') as rows\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "master",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
