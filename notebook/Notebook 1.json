@@ -4,7 +4,7 @@
 		"nbformat": 4,
 		"nbformat_minor": 2,
 		"bigDataPool": {
-			"referenceName": "sparkpool",
+			"referenceName": "sparkpoolxx",
 			"type": "BigDataPoolReference"
 		},
 		"sessionProperties": {
@@ -17,7 +17,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "b78da741-9cd1-47f4-9519-1ca7c50e0d76"
+				"spark.autotune.trackingId": "2e981bca-00f8-4644-b714-7a0370246d01"
 			}
 		},
 		"metadata": {
@@ -31,18 +31,18 @@
 				"name": "python"
 			},
 			"a365ComputeOptions": {
-				"id": "/subscriptions/e972b051-05ab-47bc-95a7-b2954e42dd5f/resourceGroups/Learning_hands/providers/Microsoft.Synapse/workspaces/synapseworkxx/bigDataPools/sparkpool",
-				"name": "sparkpool",
+				"id": "/subscriptions/e972b051-05ab-47bc-95a7-b2954e42dd5f/resourceGroups/tabsanview/providers/Microsoft.Synapse/workspaces/xsynapseworkspacex/bigDataPools/sparkpoolxx",
+				"name": "sparkpoolxx",
 				"type": "Spark",
-				"endpoint": "https://synapseworkxx.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/sparkpool",
+				"endpoint": "https://xsynapseworkspacex.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/sparkpoolxx",
 				"auth": {
 					"type": "AAD",
 					"authResource": "https://dev.azuresynapse.net"
 				},
 				"sparkVersion": "3.1",
 				"nodeCount": 10,
-				"cores": 8,
-				"memory": 56,
+				"cores": 4,
+				"memory": 28,
 				"automaticScaleJobs": false
 			},
 			"sessionKeepAliveTimeout": 30
@@ -63,7 +63,7 @@
 					"hol = PublicHolidays(start_date=start_date, end_date=end_date)\r\n",
 					"hol_df = hol.to_spark_dataframe()"
 				],
-				"execution_count": 4
+				"execution_count": 2
 			},
 			{
 				"cell_type": "code",
@@ -82,7 +82,7 @@
 					"# Display 5 rows\r\n",
 					"hol_df.show(5, truncate = False)"
 				],
-				"execution_count": 5
+				"execution_count": 3
 			},
 			{
 				"cell_type": "code",
@@ -102,14 +102,17 @@
 					"from pyspark.sql.types import *\r\n",
 					"\r\n",
 					"# Primary storage info\r\n",
-					"account_name = 'storageaccxx' # fill in your primary account name\r\n",
-					"container_name = 'writebackxx' # fill in your container name\r\n",
-					"relative_path = 'https://storageaccxx.blob.core.windows.net/writebackxx' # fill in your relative folder path\r\n",
+					"#account_name = 'storageaccxx' # fill in your primary account name\r\n",
+					"#container_name = 'writebackxx' # fill in your container name\r\n",
+					"#relative_path = 'https://storageaccxx.blob.core.windows.net/writebackxx' # fill in your relative folder path\r\n",
+					"account_name = 'synaccxx' # fill in your primary account name\r\n",
+					"container_name = 'datasetxx' # fill in your container name\r\n",
+					"relative_path = 'https://synaccxx.blob.core.windows.net/datasetxx' # fill in your relative folder path\r\n",
 					"\r\n",
 					"adls_path = 'abfss://%s@%s.dfs.core.windows.net/%s' % (container_name, account_name, relative_path)\r\n",
 					"print('Primary storage account path: ' + adls_path)"
 				],
-				"execution_count": 6
+				"execution_count": 4
 			},
 			{
 				"cell_type": "code",
@@ -132,7 +135,7 @@
 					"print('json file path： ' + json_path)\r\n",
 					"print('csv file path: ' + csv_path)"
 				],
-				"execution_count": 7
+				"execution_count": 5
 			},
 			{
 				"cell_type": "code",
@@ -152,7 +155,7 @@
 					"hol_df.write.json(json_path, mode = 'overwrite')\r\n",
 					"hol_df.write.csv(csv_path, mode = 'overwrite', header = 'true')"
 				],
-				"execution_count": 8
+				"execution_count": 6
 			},
 			{
 				"cell_type": "code",
@@ -171,6 +174,42 @@
 					"# Define the text file path\r\n",
 					"text_path = adls_path + 'holiday.txt'\r\n",
 					"print('text file path: ' + text_path)"
+				],
+				"execution_count": 7
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"df_csv = spark.read.csv(csv_path, header = 'true')"
+				],
+				"execution_count": 8
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"df_csv.show(5)"
 				],
 				"execution_count": 9
 			},
