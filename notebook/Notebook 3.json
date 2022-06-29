@@ -17,7 +17,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "5a70b3bd-88ae-4792-9744-e9392953072b"
+				"spark.autotune.trackingId": "3c5145e9-829b-4dbe-aa73-0ebee1d9f1c3"
 			}
 		},
 		"metadata": {
@@ -62,7 +62,7 @@
 					"adls_path = 'abfss://%s@%s.dfs.core.windows.net/%s' % (container_name, account_name, relative_path)\r\n",
 					"print('Primary storage account path: ' + adls_path)"
 				],
-				"execution_count": 1
+				"execution_count": 11
 			},
 			{
 				"cell_type": "code",
@@ -82,7 +82,7 @@
 					"print('csv file path: ' + csv_path)\r\n",
 					""
 				],
-				"execution_count": null
+				"execution_count": 12
 			},
 			{
 				"cell_type": "code",
@@ -100,7 +100,28 @@
 				"source": [
 					"df_csv = spark.read.csv('abfss://datasetxx@synaccxx.dfs.core.windows.net/29-06-2020-TO-28-06-2022_bulk.csv', header = 'true')"
 				],
-				"execution_count": null
+				"execution_count": 13
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					},
+					"collapsed": false
+				},
+				"source": [
+					"# Display top 5 rows\r\n",
+					"display(df_csv.limit(5))\r\n",
+					""
+				],
+				"execution_count": 14
 			},
 			{
 				"cell_type": "code",
@@ -116,11 +137,61 @@
 					}
 				},
 				"source": [
-					"# Display top 5 rows\r\n",
-					"display(df_csv.limit(5))\r\n",
-					"\r\n",
-					"# Display data statistic information\r\n",
-					"display(df_csv, summary = True)"
+					"df_csv.describe().show()"
+				],
+				"execution_count": 16
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"df_csv.describe(\"Security Name\").show()"
+				],
+				"execution_count": 17
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"df_csv.summary().show()"
+				],
+				"execution_count": 19
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					""
 				],
 				"execution_count": null
 			}
