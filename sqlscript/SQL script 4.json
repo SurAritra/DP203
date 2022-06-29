@@ -1,0 +1,17 @@
+{
+	"name": "SQL script 4",
+	"properties": {
+		"content": {
+			"query": "select top 10 *\nfrom openrowset(\n    bulk 'https://synaccxx.blob.core.windows.net/datasetxx/29-06-2020-TO-28-06-2022_bulk.csv',\n    format = 'csv',\n    parser_version = '2.0',\n    firstrow = 1 ) as rows\n\n\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "master",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
