@@ -17,7 +17,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "3c34ffbe-82ba-4412-a31e-d924a1cf6a81"
+				"spark.autotune.trackingId": "5a70b3bd-88ae-4792-9744-e9392953072b"
 			}
 		},
 		"metadata": {
@@ -62,7 +62,7 @@
 					"adls_path = 'abfss://%s@%s.dfs.core.windows.net/%s' % (container_name, account_name, relative_path)\r\n",
 					"print('Primary storage account path: ' + adls_path)"
 				],
-				"execution_count": 15
+				"execution_count": 1
 			},
 			{
 				"cell_type": "code",
@@ -82,7 +82,7 @@
 					"print('csv file path: ' + csv_path)\r\n",
 					""
 				],
-				"execution_count": 16
+				"execution_count": null
 			},
 			{
 				"cell_type": "code",
@@ -100,7 +100,7 @@
 				"source": [
 					"df_csv = spark.read.csv('abfss://datasetxx@synaccxx.dfs.core.windows.net/29-06-2020-TO-28-06-2022_bulk.csv', header = 'true')"
 				],
-				"execution_count": 17
+				"execution_count": null
 			},
 			{
 				"cell_type": "code",
@@ -116,7 +116,11 @@
 					}
 				},
 				"source": [
-					""
+					"# Display top 5 rows\r\n",
+					"display(df_csv.limit(5))\r\n",
+					"\r\n",
+					"# Display data statistic information\r\n",
+					"display(df_csv, summary = True)"
 				],
 				"execution_count": null
 			}
