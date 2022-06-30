@@ -1,0 +1,17 @@
+{
+	"name": "SQL script 6",
+	"properties": {
+		"content": {
+			"query": "SELECT TOP (10) [Date]\n,[Symbol]\n,[Securities]\n,[Client]\n,[Transaction]\n,[Quantity]\n,[TradePrice]\n,[WghtAvgPrice]\n,[Remarks]\n FROM [asb].[FactShare]",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "xxdb",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

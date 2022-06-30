@@ -17,7 +17,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "87963cbe-b2ed-45ed-b2cd-1d3ea90d06db"
+				"spark.autotune.trackingId": "acc12f2e-8b1a-4c0b-a966-ccdf2e37c532"
 			}
 		},
 		"metadata": {
@@ -62,7 +62,7 @@
 					"adls_path = 'abfss://%s@%s.dfs.core.windows.net/%s' % (container_name, account_name, relative_path)\r\n",
 					"print('Primary storage account path: ' + adls_path)"
 				],
-				"execution_count": 42
+				"execution_count": 43
 			},
 			{
 				"cell_type": "code",
@@ -82,7 +82,7 @@
 					"print('csv file path: ' + csv_path)\r\n",
 					""
 				],
-				"execution_count": null
+				"execution_count": 44
 			},
 			{
 				"cell_type": "code",
@@ -100,7 +100,7 @@
 				"source": [
 					"df_csv = spark.read.csv('abfss://datasetxx@synaccxx.dfs.core.windows.net/29-06-2020-TO-28-06-2022_bulk.csv', header = 'true')"
 				],
-				"execution_count": null
+				"execution_count": 45
 			},
 			{
 				"cell_type": "code",
@@ -118,10 +118,11 @@
 				},
 				"source": [
 					"# Display top 5 rows\r\n",
-					"display(df_csv.limit(5))\r\n",
+					"df_csv.show(5)\r\n",
+					"df_csv.printSchema()\r\n",
 					""
 				],
-				"execution_count": null
+				"execution_count": 52
 			},
 			{
 				"cell_type": "code",
@@ -139,7 +140,7 @@
 				"source": [
 					"df_csv.describe().show()"
 				],
-				"execution_count": null
+				"execution_count": 47
 			},
 			{
 				"cell_type": "code",
@@ -157,7 +158,7 @@
 				"source": [
 					"df_csv.describe(\"Security Name\").show()"
 				],
-				"execution_count": null
+				"execution_count": 48
 			},
 			{
 				"cell_type": "code",
@@ -174,12 +175,12 @@
 				},
 				"source": [
 					"#df_csv.summary().show()\r\n",
-					"df_transform = df_csv.selectExpr(\"Date as date\",\"Symbol as symbol\",\"'Security Name' as Securities\")\r\n",
-					"df_transform.show(2)\r\n",
+					"#df_transform = df_csv.selectExpr(\"Date as date\",\"Symbol as symbol\",\"'Security Name' as Securities\")\r\n",
+					"#df_transform.show(2)\r\n",
 					"df_csv.createOrReplaceTempView('source')\r\n",
 					"sharesource = spark.sql(\"SELECT * FROM source\").show(5)"
 				],
-				"execution_count": null
+				"execution_count": 49
 			},
 			{
 				"cell_type": "code",
