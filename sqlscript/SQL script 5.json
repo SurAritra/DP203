@@ -1,0 +1,17 @@
+{
+	"name": "SQL script 5",
+	"properties": {
+		"content": {
+			"query": "-- Use data from Azure blob storage in the Contoso Retail Logical Data Warehouse.\n--\n-- Before you begin:\n-- To run this tutorial, you need an Azure account that already has a Synapse Analytics workspace.\n-- If you don't already have this, see \n-- https://techcommunity.microsoft.com/t5/azure-synapse-analytics/you-need-just-5-minutes-to-create-synapse-workspace-and-run-your/ba-p/1750253\n--\n\n-- Create an external data source\n-- LOCATION: Provide Azure storage account name and blob container name.\n-- CREDENTIAL: Provide the credential created in the previous step.\n-- 'https://synaccxx.blob.core.windows.net/datasetxx/29-06-2020-TO-28-06-2022_bulk.csv',\n\nCREATE EXTERNAL DATA SOURCE AzureStorage\nWITH \n(  \n    LOCATION = 'wasbs://datasetxx@synaccxx.dfs.core.windows.net/'\n); \nGO\n\n-- The data is stored in text files in Azure blob storage, and each field is separated with a delimiter. \n-- Run this [CREATE EXTERNAL FILE FORMAT][] command to specify the format of the data in the text files. \n-- The Contoso data is uncompressed and pipe delimited.\n\nCREATE EXTERNAL FILE FORMAT csvFileFormat \nWITH \n(   FORMAT_TYPE = DELIMITEDTEXT\n,\tFORMAT_OPTIONS\t(   FIELD_TERMINATOR = ','\n\t\t\t\t\t,\tSTRING_DELIMITER = ''\n\t\t\t\t\t,\tUSE_TYPE_DEFAULT = FALSE \n\t\t\t\t\t)\n);\nGO\n\n-- To create a place to store the Contoso data in your database, create a schema.\n\nCREATE SCHEMA [asb];\nGO\n\n-- Now let's create the external tables. All we are doing here is defining column names and data types, \n-- and binding them to the location and format of the Azure blob storage files. The location is the folder \n-- under the root directory of the Azure Storage Blob.\n\n--DimAccount\nCREATE EXTERNAL TABLE [asb].FactShare \n(\n\t[Date] [datetime],\n    [Symbol] [nvarchar](50),\n    [Securities] [nvarchar](500),\n    [Client] [nvarchar](500),\n    [Transaction] [nvarchar](10),\n    [Quantity] [int],\n    [TradePrice] [FLOAT],\n    [WghtAvgPrice] [FLOAT],\n    [Remarks] [nvarchar]\n)\nWITH \n(\n    LOCATION='/FactShare/' \n,   DATA_SOURCE = AzureStorage\n,   FILE_FORMAT = csvFileFormat\n)\n;",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "xxdb",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
