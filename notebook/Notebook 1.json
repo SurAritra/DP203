@@ -17,7 +17,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "2e981bca-00f8-4644-b714-7a0370246d01"
+				"spark.autotune.trackingId": "73bb81f0-2a30-43aa-a072-4868404479f3"
 			}
 		},
 		"metadata": {
@@ -63,7 +63,7 @@
 					"hol = PublicHolidays(start_date=start_date, end_date=end_date)\r\n",
 					"hol_df = hol.to_spark_dataframe()"
 				],
-				"execution_count": 2
+				"execution_count": 1
 			},
 			{
 				"cell_type": "code",
@@ -82,7 +82,7 @@
 					"# Display 5 rows\r\n",
 					"hol_df.show(5, truncate = False)"
 				],
-				"execution_count": 3
+				"execution_count": 2
 			},
 			{
 				"cell_type": "code",
@@ -112,7 +112,7 @@
 					"adls_path = 'abfss://%s@%s.dfs.core.windows.net/%s' % (container_name, account_name, relative_path)\r\n",
 					"print('Primary storage account path: ' + adls_path)"
 				],
-				"execution_count": 4
+				"execution_count": 3
 			},
 			{
 				"cell_type": "code",
@@ -135,7 +135,7 @@
 					"print('json file path： ' + json_path)\r\n",
 					"print('csv file path: ' + csv_path)"
 				],
-				"execution_count": 5
+				"execution_count": 4
 			},
 			{
 				"cell_type": "code",
@@ -155,7 +155,7 @@
 					"hol_df.write.json(json_path, mode = 'overwrite')\r\n",
 					"hol_df.write.csv(csv_path, mode = 'overwrite', header = 'true')"
 				],
-				"execution_count": 6
+				"execution_count": 5
 			},
 			{
 				"cell_type": "code",
@@ -175,7 +175,7 @@
 					"text_path = adls_path + 'holiday.txt'\r\n",
 					"print('text file path: ' + text_path)"
 				],
-				"execution_count": 7
+				"execution_count": 6
 			},
 			{
 				"cell_type": "code",
@@ -193,7 +193,7 @@
 				"source": [
 					"df_csv = spark.read.csv(csv_path, header = 'true')"
 				],
-				"execution_count": 8
+				"execution_count": 7
 			},
 			{
 				"cell_type": "code",
@@ -211,7 +211,7 @@
 				"source": [
 					"df_csv.show(5)"
 				],
-				"execution_count": 9
+				"execution_count": 8
 			},
 			{
 				"cell_type": "code",
