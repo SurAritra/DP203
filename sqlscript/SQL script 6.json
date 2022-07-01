@@ -2,13 +2,13 @@
 	"name": "SQL script 6",
 	"properties": {
 		"content": {
-			"query": "SELECT TOP (10) [Date]\n,[Symbol]\n,[Securities]\n,[Client]\n,[Transaction]\n,[Quantity]\n,[TradePrice]\n,[WghtAvgPrice]\n,[Remarks]\n FROM [asb].[FactShare]",
+			"query": "SELECT  TOP 10 * from dbo.date",
 			"metadata": {
 				"language": "sql"
 			},
 			"currentConnection": {
-				"databaseName": "xxdb",
-				"poolName": "Built-in"
+				"databaseName": "sqldedicatedxx",
+				"poolName": "sqldedicatedxx"
 			},
 			"resultLimit": 5000
 		},
